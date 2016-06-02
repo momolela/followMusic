@@ -86,6 +86,17 @@
 <script type="text/javascript" src="${basePath}/js/head.js"></script>
 <script type="text/javascript" src="${basePath}/js/dialog_login.js"></script>
 <script type="text/javascript">
+
+	//点击登录显示登录页面
+	$(".l_login").click(function(){
+		$.dialog({which:"login",page:"noIndex"});
+	});
+	
+	//点击注册显示登录页面
+	$(".l_register").click(function(){
+		$.dialog({which:"register",page:"noIndex"});
+	});
+	
 	//点击我的音乐盒
 	function login(){
 		var nologin = "<%=request.getSession().getAttribute("nologin")%>";

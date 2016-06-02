@@ -21,6 +21,7 @@
 		</global-results>
 	</package>
 	
+	<!-- 用户包 -->
 	<package name="UserActionPKG" namespace="/" extends="defaults">
 		<action name="/*/*" method="{2}" class="{1}Action">
 			<result type="json" name="ajaxSuccess">
@@ -31,7 +32,7 @@
 		</action>
 	</package>
 
-	<!-- 验证码等工具包 -->
+	<!-- 工具包 -->
 	<package name="UtilsPkg" namespace="/" extends="struts-default"><!-- 不同action的name可以是相同的，namespace防止action命名冲突 -->
    		<action name="checkcode" class="checkCodeAction">
    			<result name="success" type="stream">
@@ -41,4 +42,5 @@
    			</result>
    		</action>
    </package>
+   
 </struts>
