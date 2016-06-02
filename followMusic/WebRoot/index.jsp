@@ -381,17 +381,17 @@
 
 	//点击登录显示登录页面
 	$(".l_login").click(function(){
-		$.dialog("login","index");
+		$.dialog({which:"login",page:"index"});
 	});
 	
 	//点击注册显示登录页面
 	$(".l_register").click(function(){
-		$.dialog("register","index");
+		$.dialog({which:"register",page:"index"});
 	});
 	
 	//验证码换图片的函数
 	function changeCheckCode(){
-		var src = "<%=path %>/checkcode.do?haha="+Math.random();
+		var src = "${basePath}/checkcode?haha="+Math.random();
 		$(".checkcode").find("img").attr("src",src);
 	}
 	

@@ -77,12 +77,12 @@
 
 	//点击登录显示登录页面
 	$(".l_login").click(function(){
-		$.dialog("login","noIndex");
+		$.dialog({which:"login",page:"noIndex"});
 	});
 	
 	//点击注册显示登录页面
 	$(".l_register").click(function(){
-		$.dialog("register","noIndex");
+		$.dialog({which:"register",page:"noIndex"});
 	});
 
 	//点击我的音乐盒

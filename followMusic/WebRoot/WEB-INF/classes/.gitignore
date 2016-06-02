@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /applicationContext.xml
 /com
 /db.properties
@@ -6,3 +7,6 @@
 /readme.txt
 /struts.properties
 /struts.xml
+=======
+/com
+>>>>>>> 60524eb1947da8b747cdd75e68ceac18fb91e01d
