@@ -1,20 +1,19 @@
-$.dialog = function(opts,page){
+$.dialog = function(opts){
 	var animate = animateIn();
-	var checkcodeservlet = "";
-	Page = page;
-	if(page!="index"){
+	Page = opts.page;
+	
+	if(opts.page!="index"){
 		checkcodeservlet = "../checkcode";
 		loginservlet = "../user/login";
 		registerservlet = "../user/register";
 		checknameservlet = "../user/checkName";
-		sendMailservlet = "../user/sendMail";
 	}else{
 		checkcodeservlet = "checkcode";
 		loginservlet = "user/login";
 		registerservlet = "user/register";
 		checknameservlet = "user/checkName";
-		sendMailservlet = "user/sendMail";
 	}
+	
 	var dialog_login = "<div class='login "+animate+"'>"+
 						"<h2>登录|<a class='to_register' href='#'>注册 </a></h2>"+
 						"<a class='close' href='javascript:void(0)'>x</a>"+
@@ -81,13 +80,14 @@ $.dialog = function(opts,page){
 					"			</div>"+
 					"		</div>"+
 					"	</div>";
-	if(opts=="login"){
+	
+	if(opts.which=="login"){
 		var dialog = dialog_login;
 		var mask = "<div class='login_mask'></div>";
-	}else if(opts=="register"){
+	}else if(opts.which=="register"){
 		var dialog = dialog_register;
 		var mask = "<div class='register_mask'></div>";
-	}else if(page=="alert"){
+	}else if(opts.which=="alert"){
 		var dialog = dialog_alert;
 		var mask = "<div class='alert_mask'></div>";
 	}
@@ -112,7 +112,7 @@ function center($dialog){
 	$dialog.css({top:_top,left:_left});
 }
 
-
+//浏览器窗口改变的时候居中定位
 function initEvent($dialog,opts){
 	//浏览器窗口改变的时候居中定位
 	$(window).resize(function(){
@@ -196,7 +196,7 @@ function initEvent($dialog,opts){
 			$(".login_mask").remove();
 		}, 1000);
 		//跳转注册
-		$.dialog("register",Page);
+		$.dialog({which:"register",page:Page});
 	});
 	
 	// 点击注册中的跳转登录
@@ -211,7 +211,7 @@ function initEvent($dialog,opts){
 			$(".register_mask").remove();
 		}, 1000);
 		//跳转登录
-		$.dialog("login",Page);
+		$.dialog({which:"login",page:Page});
 	});
 	
 	//提交登录事件
@@ -249,7 +249,7 @@ function initEvent($dialog,opts){
 	});
 }
 
-// 触发加载dialog插件，动画
+// 触发加载dialog插件的动画
 function animateIn(){
 	return "animated fadeInUp";
 }
@@ -259,7 +259,7 @@ function animateOut(){
 	return "animated fadeOutUp";
 }
 
-//回调的方法
+// 登录成功回调的方法
 function callback_login()
 {
 	if(xmlHttp.readyState==4)
@@ -278,7 +278,7 @@ function callback_login()
 	}
 }
 
-//回调的方法
+// 注册成功的回调的方法
 function callback_register()
 {
 	if(xmlHttp.readyState==4)
@@ -297,7 +297,7 @@ function callback_register()
 	}
 }
 
-//检测注册时用户名是否重复的回调的方法
+// 检测注册时用户名是否重复的回调的方法
 function callback_checkName()
 {
 	if(xmlHttp.readyState==4)

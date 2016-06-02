@@ -77,7 +77,7 @@
 
 <body>
 	<div class="not-found">
-		<img src="<%=path %>/images/404.jpg"/>
+		<img src="${basePath }/images/404.jpg"/>
 		<div class="baozi baozi_tohome" title="返回首页">
 			<div class="meimao meimao_left"></div>
 			<div class="eye eye_left"></div>
@@ -96,7 +96,7 @@
 	</div>
 
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="<%=path %>/js/head.js"></script>
+<script type="text/javascript" src="/js/head.js"></script>
 <script type="text/javascript">
 	$(".baozi_tohome").click(function(){
 		window.location.href = "index.jsp";

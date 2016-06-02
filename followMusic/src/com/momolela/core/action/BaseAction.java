@@ -12,6 +12,7 @@ public class BaseAction {
 	public static final String ERROR = "error";
 	
 	protected String result;
+	protected String message;
 
 	public String getResult() {
 		return result;
@@ -20,8 +21,6 @@ public class BaseAction {
 	public void setResult(String result) {
 		this.result = result;
 	}
-	
-	protected String message;
 
 	public String getMessage() {
 		return message;

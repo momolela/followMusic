@@ -123,7 +123,7 @@
 	//点击我的音乐盒
 	function login(){
 		if(nologin=="true"){
-			$.dialog("login","index");
+			$.dialog({which:"login",page:"index"});
 		}else if(nologin=="false"){
 			window.open("<%=path%>/page/musicbox.jsp");
 		}
@@ -137,9 +137,10 @@
 </script>
 
 <script type="text/javascript">
+	// 点击我的乐单，检测是否登录，检测是否有乐单
 	$(".myusersend").click(function(){
 		if(nologin=="true"){
-			$.dialog("login","index");
+			$.dialog({which:"login",page:"noIndex"});
 		}else if(nologin=="false"){
 			sendRequest("<%=path%>/HasUserSendServlet",null,callback_hasusersend);
 		}
@@ -193,14 +194,14 @@
 				}
 				else{
 					//检测用户是否已经拥有了自己的乐单没有就跳转新建
-					$.dialog({title:"提示框",content:"你还没有自己的乐单，新建乐单？",callback:function(ok){
+					$.dialog({which:"alert",title:"提示框",content:"你还没有自己的乐单，新建乐单？",callback:function(ok){
 						if(ok){
 							// 操作后台，等等 ... 你想做的事情
 							window.location.href="<%=path%>/page/usersend_new.jsp";
 						} else{
 							window.location.reload(location);
 						}
-					}},"alert");
+					}});
 				}
 			}
 		}
