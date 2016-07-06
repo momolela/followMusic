@@ -11,9 +11,7 @@
 		<meta name="Keywords" content="follow音乐,mv,音乐资讯">
 		<meta name="Description" content="follow音乐网,最全面最华丽的音乐网,好听,好看,尽在follow音乐网.音乐,MV,音乐资讯一手掌握.就来follow音乐网.">
 		<title>follow音乐</title>
-		<link type="text/css" rel="stylesheet" href="<%=path %>/css/index.css"></link>
-		<link type="text/css" rel="stylesheet" href="<%=path %>/css/animate.css"></link>
-		<link rel="shortcut icon" href="<%=path %>/images/fw.ico" />
+		<%@include file="/commons/public.jsp" %>
 		
 		<style type="text/css">
 			.usersend{width:100%;height:790px;background:#eee;}
@@ -37,7 +35,7 @@
 			.usersend .u_content .c_left .l_song ul li span{color:#e2e2e2;}
 			.usersend .u_content .c_left .s_title{width:660px;height:40px;border-left:5px solid #26c316;font-size:18px;color:#333;line-height:40px;padding-left:36px;background:#f7f7f7;}
 			.usersend .u_content .c_left .s_song{width:100%;height:320px;margin-top:20px;}
-			.usersend .u_content .c_left .s_song .s_control i{margin-top:8px;display:inline-block;width:14px;height:16px;background:url('images/usersend_page/music_page.png');vertical-align:middle;margin-left:10px;cursor:pointer;}
+			.usersend .u_content .c_left .s_song .s_control i{margin-top:8px;display:inline-block;width:14px;height:16px;background:url('../images/usersend_page/music_page.png');vertical-align:middle;margin-left:10px;cursor:pointer;}
 			.usersend .u_content .c_left .s_song .s_control .play{background-position:0 -169px;}
 			.usersend .u_content .c_left .s_song .s_control .play:hover{background-position:0 -183px;}
 			.usersend .u_content .c_left .s_song .s_control .add{background-position:-43px -169px;}
@@ -60,20 +58,20 @@
 	<div class="usersend">
 		<div class="u_title">
 			<ul>
-				<li><a href="<%=path %>/QueryUsersendListServlet?pn=1">全部乐单</a></li>
+				<li><a href="${basePath }/to/sendlistAction.do?pn=1">全部乐单</a></li>
 				<li><a style="color:#27d5bf;" href="javascript:void(0)">精品乐单</a></li>
 			</ul>
 		</div>
 		<div class="u_content">
 			<div class="c_left">
 				<div class="l_author">
-					<img src="${usersendlist[0].picurl}" width="200px" height="200px"/>
+					<img src="../${usersendlist[0].picurl}" width="200px" height="200px"/>
 					<div class="right">
 						<p class="p1">${usersendlist[0].title}</p>
 						<span>推荐理由:</span>
 						<p class="p2">${usersendlist[0].content}</p>
 						<div class="userinfo">
-							<img src="${usersendlist[0].userpicurl}" width="40px" height="40px"/>${usersendlist[0].username}
+							<img src="../${usersendlist[0].userpicurl}" width="40px" height="40px"/>${usersendlist[0].username}
 						</div>
 					</div>
 				</div>
@@ -83,9 +81,9 @@
 					</div>
 					<div class="s_song">
 						<ul>
-							<c:forEach items="${usersendarray }" var="item" varStatus="idx">
+							<c:forEach items="${songset }" var="item" varStatus="idx">
 								<li>
-									<span>${idx.count}.</span><a href="">${item.singer } - ${item.songname } - 《${item.album }》.mp3</a>
+									<span>${idx.count}.</span><a href="">${item.singer } - ${item.songname } - &laquo;${item.album }&raquo;.mp3</a>
 										<div class="s_control" style="float:right;width:72px;height:30px;"><i class="play"></i><i class="add"></i><i class="comment"></i>
 									</div>
 								</li>
@@ -95,13 +93,13 @@
 				</div>
 			</div>
 			
-			<div class="c_right" style="display:none;">
+			<div class="c_right" style="display:block;">
 				<div class="r_title">精品推荐的乐单</div>
 				<div class="r_list">
 					<ul>
 						<li>
 							<a href="">
-								<img src="images/user/boy.jpg"/>
+								<img src="../images/user/boy.jpg"/>
 								<div class="box">
 									<p class="p1">飞机设计古韵的味道</p>
 									<p class="p2">11220 人 赞</p>
@@ -110,54 +108,54 @@
 						</li>
 						<li>
 							<a href="">
-								<img src="images/user/boy.jpg"/>
+								<img src="../images/user/boy.jpg"/>
 								<div class="box">
-									<p class="p1">味道</p>
+									<p class="p1">飞机设计古韵的味道</p>
 									<p class="p2">11220 人 赞</p>
 								</div>
 							</a>
 						</li>
 						<li>
 							<a href="">
-								<img src="images/user/boy.jpg"/>
+								<img src="../images/user/boy.jpg"/>
 								<div class="box">
-									<p class="p1">飞机设计味道</p>
+									<p class="p1">飞机设计古韵的味道</p>
 									<p class="p2">11220 人 赞</p>
 								</div>
 							</a>
 						</li>
 						<li>
 							<a href="">
-								<img src="images/user/boy.jpg"/>
+								<img src="../images/user/boy.jpg"/>
 								<div class="box">
-									<p class="p1">飞机设计否定乐古韵的味道</p>
+									<p class="p1">飞机设计古韵的味道</p>
 									<p class="p2">11220 人 赞</p>
 								</div>
 							</a>
 						</li>
 						<li>
 							<a href="">
-								<img src="images/user/boy.jpg"/>
+								<img src="../images/user/boy.jpg"/>
 								<div class="box">
-									<p class="p1">飞机风古韵的味道</p>
+									<p class="p1">飞机设计古韵的味道</p>
 									<p class="p2">11220 人 赞</p>
 								</div>
 							</a>
 						</li>
 						<li>
 							<a href="">
-								<img src="images/user/boy.jpg"/>
+								<img src="../images/user/boy.jpg"/>
 								<div class="box">
-									<p class="p1">飞机的味道</p>
+									<p class="p1">飞机设计古韵的味道</p>
 									<p class="p2">11220 人 赞</p>
 								</div>
 							</a>
 						</li>
 						<li>
 							<a href="">
-								<img src="images/user/boy.jpg"/>
+								<img src="../images/user/boy.jpg"/>
 								<div class="box">
-									<p class="p1">飞机道</p>
+									<p class="p1">飞机设计古韵的味道</p>
 									<p class="p2">11220 人 赞</p>
 								</div>
 							</a>
@@ -171,35 +169,6 @@
 <script type="text/javascript" src="<%=path %>/js/jquery.js"></script>
 <script type="text/javascript" src="<%=path %>/js/head.js"></script>
 <script type="text/javascript" src="<%=path %>/js/dialog_login.js"></script>
-<script type="text/javascript">
-	//点击登录显示登录页面
-	$(".l_login").click(function(){
-		$.dialog("login","null");
-		return false;
-	});
-	
-	//点击注册显示登录页面
-	$(".l_register").click(function(){
-		$.dialog("register","null");
-		return false;
-	});
-	
-	//点击我的音乐盒
-	function login(){
-		var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-		if(nologin=="true"){
-			$.dialog("login","null");
-		}else if(nologin=="false"){
-			window.open("<%=path%>/page/musicbox.jsp");
-		}
-	}
-	
-	//验证码换图片的函数
-	function changeCheckCode(){
-		var src = "../CheckCodeServlet?haha="+Math.random();
-		$(".checkcode").find("img").attr("src",src);
-	}
-</script>
 
 <script type="text/javascript">
 	/**

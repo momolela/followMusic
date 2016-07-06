@@ -11,9 +11,7 @@
 		<meta name="Keywords" content="follow音乐,mv,音乐资讯">
 		<meta name="Description" content="follow音乐网,最全面最华丽的音乐网,好听,好看,尽在follow音乐网.音乐,MV,音乐资讯一手掌握.就来follow音乐网.">
 		<title>follow音乐</title>
-		<link type="text/css" rel="stylesheet" href="<%=path %>/css/index.css"></link>
-		<link type="text/css" rel="stylesheet" href="<%=path %>/css/animate.css"></link>
-		<link rel="shortcut icon" href="<%=path %>/images/fw.ico" />
+		<%@include file="/commons/public.jsp" %>
 		
 		<style type="text/css">
 			.usersend{width:100%;height:600px;background:#eee;}
@@ -31,7 +29,7 @@
 			.usersend .u_content .c_right .r_list ul li .box{float:right;width:150px;height:40px;margin-right:20px;}
 			.usersend .u_content .c_right .r_list ul li p{width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:3px;color:#000;}
 			
-			.c_left form{font-size:16px;color:#000;padding-bottom:20px;border-bottom:1px solid #000;}
+			.c_left form{font-size:16px;color:#000;padding-bottom:20px;border-bottom:1px solid #eee;}
 			.c_left form span{margin:10px 60px 10px 0;display:block;}
 			.c_left form .listname{width:250px;height:36px;border-radius:5px;border:1px solid #e1e1e1;background:#fafafa;outline:none;font-size:16px;padding-left:10px;}
 			.c_left form .listdesc{width:250px;height:36px;border-radius:5px;border:1px solid #e1e1e1;background:#fafafa;outline:none;font-size:16px;padding-left:10px;}
@@ -50,7 +48,7 @@
 		</div>
 		<div class="u_content">
 			<div class="c_left">
-				<div l_title style="width:100%;height:44px;color:#333;border-bottom:1px solid #000;font-size:18px;line-height:44px;font-weight:bold;">新建乐单</div>
+				<div l_title style="width:100%;height:44px;color:#333;border-bottom:1px solid #eee;font-size:18px;line-height:44px;font-weight:bold;">新建乐单</div>
 				<form action="<%=path %>/NewUserSendServlet" enctype="multipart/form-data" method="post">
 					<span  style="margin-top:20px;">我的乐单名</span>
 					<input id="listname" class="listname" type="text" name="listname" required><br>
@@ -68,7 +66,7 @@
 				<img id="preview" style="width:300px;height:200px;position:absolute;z-index:999;top:240px;left:500px;"/>
 			</div>
 			
-			<div class="c_right" style="display:none;">
+			<div class="c_right" style="display:block;">
 			</div>
 		</div>
 	</div>
@@ -77,34 +75,6 @@
 <script type="text/javascript" src="<%=path %>/js/head.js"></script>
 <script type="text/javascript" src="<%=path %>/js/dialog_login.js"></script>
 <script type="text/javascript">
-	//点击登录显示登录页面
-	$(".l_login").click(function(){
-		$.dialog("login","null");
-		return false;
-	});
-	
-	//点击注册显示登录页面
-	$(".l_register").click(function(){
-		$.dialog("register","null");
-		return false;
-	});
-	
-	//点击我的音乐盒
-	function login(){
-		var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-		if(nologin=="true"){
-			$.dialog("login","null");
-		}else if(nologin=="false"){
-			window.open("<%=path%>/page/musicbox.jsp");
-		}
-	}
-	
-	//验证码换图片的函数
-	function changeCheckCode(){
-		var src = "../CheckCodeServlet?haha="+Math.random();
-		$(".checkcode").find("img").attr("src",src);
-	}
-	
 	function uploadFace(sender){
 		//判断选择的是不是图片
 		if(!sender.value.match(/.jpg|.png/i))

@@ -37,15 +37,15 @@
 		<div class="a_content">
 			<div class="c_title"></div>
 			<div class="c_left">
-				<div class="l_title"><span><a style="color:#0c8f44;" href="${basePath }/QueryAllmusicServlet?pn=1">所有歌曲</a></span></div>
+				<div class="l_title"><span><a style="color:#0c8f44;" href="${basePath }/to/allMusicAction?pn=1">所有歌曲</a></span></div>
 				<ul>
 					<li style="color:#000;text-indent:22px;font-size:20px;font-weight:500;margin-top:20px;">歌曲分类</li>
-					<li><a href="${basePath }/QueryAllmusicByType?pn=1&songtypeid=1">内地</a></li>
-					<li><a href="${basePath }/QueryAllmusicByType?pn=1&songtypeid=2">台湾</a></li>
-					<li><a href="${basePath }/QueryAllmusicByType?pn=1&songtypeid=3">日韩</a></li>
-					<li><a href="${basePath }/QueryAllmusicByType?pn=1&songtypeid=4">欧美</a></li>
+					<li><a href="${basePath }/to/allMusicActionType?pn=1&songtypeid=1">内地</a></li>
+					<li><a href="${basePath }/to/allMusicActionType?pn=1&songtypeid=2">台湾</a></li>
+					<li><a href="${basePath }/to/allMusicActionType?pn=1&songtypeid=3">日韩</a></li>
+					<li><a href="${basePath }/to/allMusicActionType?pn=1&songtypeid=4">欧美</a></li>
 					<li style="border-top:1px dotted #D7D7D7;margin:0 auto;padding-top:16px;width:144px;color:#000;text-indent:14px;font-size:20px;font-weight:500;margin-top:20px;">MV库</li>
-					<li><a href="">MV</a></li>
+					<li><a href="../page/Allmv.jsp">MV</a></li>
 				</ul>
 			</div>
 			<div class="c_right">
@@ -77,35 +77,6 @@
 <script type="text/javascript" src="${basePath }/js/jquery.js"></script>
 <script type="text/javascript" src="${basePath }/js/head.js"></script>
 <script type="text/javascript" src="${basePath }/js/dialog_login.js"></script>
-
-<script type="text/javascript">
-
-	//点击登录显示登录页面
-	$(".l_login").click(function(){
-		$.dialog({which:"login",page:"noIndex"});
-	});
-	
-	//点击注册显示登录页面
-	$(".l_register").click(function(){
-		$.dialog({which:"register",page:"noIndex"});
-	});
-	
-	//点击我的音乐盒
-	function login(){
-		var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-		if(nologin=="true"){
-			$.dialog("login","null");
-		}else if(nologin=="false"){
-			window.open("<%=path%>/page/musicbox.jsp");
-		}
-	}
-	
-	//验证码换图片的函数
-	function changeCheckCode(){
-		var src = "../CheckCodeServlet?haha="+Math.random();
-		$(".checkcode").find("img").attr("src",src);
-	}
-</script>
 
 <script type="text/javascript">
 	

@@ -13,6 +13,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,11 +21,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *  @ClassName: SendList  @author: momolela  @date 2016-5-29 下午11:35:47
  */
-@Entity(name = "sendlist")
+@Entity
+@Table(name = "sendlist")
 public class SendList {
 
 	private Integer id;
@@ -71,7 +74,7 @@ public class SendList {
 	public void setPicurl(String picurl) {
 		this.picurl = picurl;
 	}
-
+	
 	@ManyToOne
 	@JoinColumn(name="uid")
 	public User getUser() {
@@ -82,7 +85,7 @@ public class SendList {
 		this.user = user;
 	}
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "sendsong", joinColumns = @JoinColumn(name = "sendlist_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "sid", referencedColumnName = "id"))
 	public Set<Song> getSong() {
 		return song;

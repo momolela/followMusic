@@ -11,9 +11,7 @@
 		<meta name="Keywords" content="follow音乐,mv,音乐资讯">
 		<meta name="Description" content="follow音乐网,最全面最华丽的音乐网,好听,好看,尽在follow音乐网.音乐,MV,音乐资讯一手掌握.就来follow音乐网.">
 		<title>follow音乐</title>
-		<link type="text/css" rel="stylesheet" href="<%=path %>/css/index.css"></link>
-		<link type="text/css" rel="stylesheet" href="<%=path %>/css/animate.css"></link>
-		<link rel="shortcut icon" href="<%=path %>/images/fw.ico" />
+		<%@include file="/commons/public.jsp" %>
 		
 		<style type="text/css">
 			.sendall{width:100%;height:1000px;background:#eee;}
@@ -52,14 +50,14 @@
 				<ul>
 					<c:forEach items="${usersend_all }" var="item" varStatus="idx">
 						<li>
-							<a href="<%=path%>/QueryUserSendServlet?id=${item.id }"><img src="${item.picurl }" width="155px" height="155px"></a>
+							<a href="${basePath }/user/queryUserSend?id=${item.id }"><img src="../${item.picurl }" width="155px" height="155px"></a>
 							<div class="info">
 								<h3>${item.title }</h3>
 								<span class="description">悦单描述：</span>
 								<p class="mes">${item.content }</p>
 							</div>
 							<div class="userinfo">
-								<img src="${item.userpicurl }" width="50px" height="50px"/>
+								<img src="../${item.userpicurl }" width="50px" height="50px"/>
 								<span>${item.username }</span>
 							</div>
 						</li>
@@ -71,7 +69,7 @@
 		<div class="s_pagecount">
 			<div class="p_content">
 				<c:if test="${curPage[0]>1 }">
-					<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/QueryUsersendListServlet?pn=${curPage[0]-1 }'/>">上一页</a>
+					<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/to/sendlistAction.do?pn=${curPage[0]-1 }'/>">上一页</a>
 				</c:if>
 				<%--计算begin,end --%>
 				<c:choose>
@@ -103,13 +101,13 @@
 							<span style="background:rgba(39,213,191,0.5);line-height:30px;text-align:center;display:inline-block;width:30px;height:30px;color:#fff;">${i }</span>
 						</c:when>
 						<c:otherwise>
-							<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:30px;height:30px;color:#333;" href="<c:url value='/QueryUsersendListServlet?pn=${i }'/>">${i }</a>
+							<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:30px;height:30px;color:#333;" href="<c:url value='/to/sendlistAction.do?pn=${i }'/>">${i }</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				
 				<c:if test="${curPage[0]<curPage[1] }">
-					<a  style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/QueryUsersendListServlet?pn=${curPage[0]+1 }'/>">下一页</a>
+					<a  style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/to/sendlistAction.do?pn=${curPage[0]+1 }'/>">下一页</a>
 				</c:if>
 			</div>
 		</div>
@@ -118,31 +116,14 @@
 <script type="text/javascript" src="<%=path %>/js/jquery.js"></script>
 <script type="text/javascript" src="<%=path %>/js/head.js"></script>
 <script type="text/javascript" src="<%=path %>/js/dialog_login.js"></script>
-<script type="text/javascript">
-	var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-	//点击我的音乐盒
-	function login(){
-		if(nologin=="true"){
-			$.dialog({which:"login",page:"index"});
-		}else if(nologin=="false"){
-			window.open("<%=path%>/page/musicbox.jsp");
-		}
-	}
-	
-	//验证码换图片的函数
-	function changeCheckCode(){
-		var src = "CheckCodeServlet?haha="+Math.random();
-		$(".checkcode").find("img").attr("src",src);
-	}
-</script>
 
 <script type="text/javascript">
 	// 点击我的乐单，检测是否登录，检测是否有乐单
 	$(".myusersend").click(function(){
-		if(nologin=="true"){
-			$.dialog({which:"login",page:"noIndex"});
-		}else if(nologin=="false"){
-			sendRequest("<%=path%>/HasUserSendServlet",null,callback_hasusersend);
+		if($(".h-user .u-name b").text() != ""){
+			sendRequest(basePath+"/user/hasUserSend",null,callback_hasusersend);
+		}else{
+			$.dialog({which:"login"});
 		}
 	});
 
@@ -179,25 +160,24 @@
 	}
 	
 	//3.回调函数
-	//回调的方法
 	function callback_hasusersend()
 	{
 		if(xmlHttp.readyState==4)
 		{
 			if(xmlHttp.status==200)
 			{
-				eval(xmlHttp.responseText);
+				var data = eval("("+xmlHttp.responseText+")");
 				//查到了
-				if(result.flag)
+				if(data.result == "success")
 				{
-					window.location.href="QueryUserSendServlet?id="+result.ID;
+					window.location.href="${basePath}/user/queryUserSend?id="+data.datamap.ID;
 				}
 				else{
 					//检测用户是否已经拥有了自己的乐单没有就跳转新建
 					$.dialog({which:"alert",title:"提示框",content:"你还没有自己的乐单，新建乐单？",callback:function(ok){
 						if(ok){
 							// 操作后台，等等 ... 你想做的事情
-							window.location.href="<%=path%>/page/usersend_new.jsp";
+							window.location.href="${basePath}/page/usersend_new.jsp";
 						} else{
 							window.location.reload(location);
 						}

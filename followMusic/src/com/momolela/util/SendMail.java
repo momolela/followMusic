@@ -34,8 +34,10 @@ import com.momolela.model.User;
 public class SendMail implements Runnable{
 
 	private User user;
-	public void setUser(User u){
+	private String flag;
+	public void setUser(User u,String flag){
 		this.user = u;
+		this.flag = flag;
 	}
 	public void run() {
 		Properties props = new Properties();
@@ -45,8 +47,8 @@ public class SendMail implements Runnable{
 		props.setProperty("mail.smtp.port", "465");
 		props.setProperty("mail.smtp.socketFactory.port", "465");
 
-		String userName = "1083910359@qq.com";
-		String emailpassword = "hfy520szj@";
+		String userName = "904582270@qq.com";
+		String emailpassword = "daxiongdi4sb";
 		Authenticator authenticator = new MyAuthenticator(userName,
 				emailpassword);
 
@@ -60,12 +62,23 @@ public class SendMail implements Runnable{
 
 			MimeMessage msg = new MimeMessage(session);
 			msg.setFrom(from);
-			msg.setSubject("follow音乐网注册邮件");
+			if(flag=="register"){
+				msg.setSubject("follow音乐网注册邮件");
+				msg.setContent(
+						"恭喜您已经成功注册成为follow音乐的一员，你的账号是:" + user.getUsername()
+								+ "\t你的密码为" + user.getPassword()
+								+ "请妥善保管，忘记密码请联系管理员。QQ:1278413504",
+						"text/html;charset=utf-8");
+			}
+			if(flag=="change"){
+				msg.setSubject("follow音乐网邮箱修改");
+				msg.setContent(
+						user.getUsername() + "恭喜您修改邮箱成功,您的新邮箱是:"
+								+ user.getEmail()
+								+ "\n记得忘记密码请联系管理员。QQ:1278413504",
+						"text/html;charset=utf-8");
+			}
 			msg.setSentDate(new Date());
-			msg.setContent("恭喜您已经成功注册成为follow音乐的一员，你的账号是:" + user.getUsername()
-					+ "\t你的密码为" + user.getPassword()
-					+ "请妥善保管，忘记密码请联系管理员。QQ:1278413504",
-					"text/html;charset=utf-8");
 			msg.setRecipient(RecipientType.TO, to);
 			Transport.send(msg);
 

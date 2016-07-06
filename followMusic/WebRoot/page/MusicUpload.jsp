@@ -11,8 +11,7 @@
 		<meta name="Keywords" content="follow音乐,mv,音乐资讯">
 		<meta name="Description" content="follow音乐网,最全面最华丽的音乐网,好听,好看,尽在follow音乐网.音乐,MV,音乐资讯一手掌握.就来follow音乐网.">
 		<title>follow音乐-用户音乐上传</title>
-		<link type="text/css" rel="stylesheet" href="${basePath }/css/index.css"></link>
-		<link rel="shortcut icon" href="${basePath }/images/fw.ico" />
+		<%@include file="/commons/public.jsp" %>
 		<style type="text/css">
 			.mid_title{font-size:18px;color:#000;border-bottom:1px solid #bbb;}
 			.userInfo{width:100%;height:580px;background:#efefef;}
@@ -42,8 +41,8 @@
 			.userInfo .u_info .right_back i{display:block;width:18px;height:18px;background:url('../images/icon2.png');background-position:-155px -104px;margin:16px 0 0 16px;}
 			.userInfo .u_info .right_back .b_back{display:none;width:80px;height:50px;background:#fff;position:absolute;left:50px;bottom:0px;color:#6eb88c;font-size:12px;line-height:50px;text-align:center;}
 			
-			.songtype .s_xiala ul li label i{vertical-align: middle;background:url('../images/icon2.png');width:20px;height:20px;display:inline-block;background-position:-280px -425px;}
-			.songtype .s_xiala ul li label i.check{background-position:-280px -475px;}
+			.songtype .s-xiala ul li label i{vertical-align: middle;background:url('../images/icon2.png');width:20px;height:20px;display:inline-block;background-position:-280px -425px;}
+			.songtype .s-xiala ul li label i.check{background-position:-280px -475px;}
 		</style>
 	</head>
 <body>
@@ -73,7 +72,7 @@
 			<div class="mid">
 				<div class="mid_info">
 					<div class="mid_title">歌曲上传</div>
-					<form action="${basePath }/UploadMusicServlet" enctype="multipart/form-data" method="post">
+					<form action="${basePath }/to/uploadMusicAction" enctype="multipart/form-data" method="post">
 						<span  style="margin-top:20px;">歌名( 必填项 )</span>
 						<input id="songname" class="songname" type="text" name="songname" required><br>
 						<span>歌手名( 必填项 )</span>
@@ -85,19 +84,19 @@
 								<span style="border-right:2px solid #f7f7f7;float:left;padding-left:30px;line-height:40px;width:180px;height:40px;margin:0;color:#333;">选择歌曲类型</span>
 								<i class="s_xialaicon" style="margin:12px 17px 0 0;float:right;vertical-align:middle;display:inline-block;width:16px;height:16px;background:url('../images/icon2.png') -213px -53px;"></i>
 							</div>
-							<div class="s_xiala" style="width:100%;height:160px;background:rgba(0,0,0,.2);">
+							<div class="s-xiala" style="width:100%;height:160px;background:rgba(0,0,0,.2);display:none;">
 								<ul>
-									<li style="width:100%;height:40px;line-height:40px;text-align:left;"><label style="cursor:pointer;margin-left:30px;"><i></i><input type="radio" name="radio" value="内地" style="opacity:0;" required>内地</label></li>
-									<li style="width:100%;height:40px;line-height:40px;text-align:left;"><label style="cursor:pointer;margin-left:30px;"><i></i><input type="radio" name="radio" value="台湾" style="opacity:0;" required>台湾</label></li>
-									<li style="width:100%;height:40px;line-height:40px;text-align:left;"><label style="cursor:pointer;margin-left:30px;"><i></i><input type="radio" name="radio" value="日韩" style="opacity:0;" required>日韩</label></li>
-									<li style="width:100%;height:40px;line-height:40px;text-align:left;"><label style="cursor:pointer;margin-left:30px;"><i></i><input type="radio" name="radio" value="欧美" style="opacity:0;" required>欧美</label></li>
+									<li style="width:100%;height:40px;line-height:40px;text-align:left;"><label style="cursor:pointer;margin-left:30px;"><i></i><input type="radio" name="songtype" value="内地" style="opacity:0;" required>内地</label></li>
+									<li style="width:100%;height:40px;line-height:40px;text-align:left;"><label style="cursor:pointer;margin-left:30px;"><i></i><input type="radio" name="songtype" value="台湾" style="opacity:0;" required>台湾</label></li>
+									<li style="width:100%;height:40px;line-height:40px;text-align:left;"><label style="cursor:pointer;margin-left:30px;"><i></i><input type="radio" name="songtype" value="日韩" style="opacity:0;" required>日韩</label></li>
+									<li style="width:100%;height:40px;line-height:40px;text-align:left;"><label style="cursor:pointer;margin-left:30px;"><i></i><input type="radio" name="songtype" value="欧美" style="opacity:0;" required>欧美</label></li>
 								</ul>
 							</div>
 						</div>
 						<span>选择歌曲</span>
 						<div class="choose_music">
 							<a href="javascript:void(0)" style="background:#fafafa;display:block;width:70px;height:38px;border:1px solid #e1e1e1;border-radius:3px 0 0 3px;background:url('../images/icon2.png');background-position:-27px -459px;">
-								<input onchange="uploadFace(this);" id="file" class="file" type="file" name="file" style="width:70px;height:38px;opacity:0;cursor:pointer;">
+								<input onchange="uploadFace(this);" id="file" class="file" type="file" name="music" style="width:70px;height:38px;opacity:0;cursor:pointer;">
 							</a>
 							<div id="filename" style="background:#fafafa;width:178px;height:38px;border:1px solid #e1e1e1;border-radius:0 3px 3px 0;position:absolute;bottom:107px;left:111px;line-height:38px;padding-left:10px;font-size:12px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;"></div>
 						</div>
@@ -154,14 +153,6 @@
 			$(this).find("div").slideLeftHide(400);
 	});
 	
-	//点击我的音乐盒
-	function login(){
-		var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-		if(nologin=="false"){
-			window.open("<%=path%>/page/musicbox.jsp");
-		}
-	}
-	
 	function uploadFace(sender){
 		//判断选择的是不是图片
 		if(!sender.value.match(/.mp3|.MP3/i))
@@ -176,21 +167,21 @@
 	}
 	
 	//
-	$(".s_xiala ul li").find("label").click(function(){
+	$(".s-xiala ul li").find("label").click(function(){
 		$(this).find("i").addClass("check");
 		$(this).parent().siblings().find("label").find("i").removeClass("check");
 	});
 	
 	//
-	var state = 1;//0表示没有下来，1表示下来了。
+	var _state = 0;//0表示没有下来，1表示下来了。
 	$(".s_title").click(function(){
-		if(state == 0){
-			$(".s_xiala").slideDown();
-			state = 1;
+		if(_state == 0){
+			$(".s-xiala").slideDown();
+			_state = 1;
 		}
-		else if(state == 1){
-			$(".s_xiala").slideUp();
-			state = 0;
+		else if(_state == 1){
+			$(".s-xiala").slideUp();
+			_state = 0;
 		}
 	});
 </script>

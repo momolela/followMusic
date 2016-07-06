@@ -22,7 +22,7 @@
 			.allmusic .a_content .c_left ul li a:hover{border-left:5px solid #F60;color:#0c8f44;font-weight:bold;background:#eee;}
 			.allmusic .a_content .c_left .l_title{width:100%;height:60px;}
 			.allmusic .a_content .c_left .l_title span{display:block;width:144px;height:60px;margin:0 auto;border-bottom:1px dotted #D7D7D7;line-height:60px;color:#0c8f44;font-weight:bold;font-size:14px;text-indent:15px;}
-			.allmusic .a_content .c_right{margin-top:40px;float:right;width:830px;height:400px;}
+			.allmusic .a_content .c_right{margin-top:40px;float:right;width:830px;height:400px;position:relative;}
 			.allmusic .a_content .c_right .r_title{width:100%;height:60px;}
 			.allmusic .a_content .c_right .r_title h2{width:100%;height:60px;color:#333;font-size:28px;font-weight:normal;}
 			.allmusic .a_content .c_right .r_ul li{background-color: #FFF;height:29px;margin:4px 0 4px 0;border-bottom:1px dotted #FFF;overflow:hidden;line-height:29px;cursor:pointer;}
@@ -42,7 +42,7 @@
 			.allmusic .a_content .c_right .r_ul li .comment{background-position:-28px -169px;}
 			.allmusic .a_content .c_right .r_ul li .comment:hover{background-position:-28px -183px;}
 			
-			.s_pagecount{width:824px;font-size:15px;color:#27d5bf;margin:74px auto 0 auto;height:30px;}
+			.s_pagecount{width:824px;font-size:15px;color:#27d5bf;height:30px;position:absolute;top:380px;}
 			.s_pagecount .p_content{float:right;height:30px;}
 		</style>
 	</head>
@@ -52,15 +52,15 @@
 		<div class="a_content">
 			<div class="c_title"></div>
 			<div class="c_left">
-				<div class="l_title"><span><a style="color:#0c8f44;" href="<%=path %>/QueryAllmusicServlet?pn=1">所有歌曲</a></span></div>
+				<div class="l_title"><span><a style="color:#0c8f44;" href="<%=path %>/to/allMusicAction?pn=1">所有歌曲</a></span></div>
 				<ul>
 					<li style="color:#000;text-indent:22px;font-size:20px;font-weight:500;margin-top:20px;">歌曲分类</li>
-					<li><a href="${basePath }/QueryAllmusicByType?pn=1&songtypeid=1">内地</a></li>
-					<li><a href="${basePath }/QueryAllmusicByType?pn=1&songtypeid=2">台湾</a></li>
-					<li><a href="${basePath }/QueryAllmusicByType?pn=1&songtypeid=3">日韩</a></li>
-					<li><a href="${basePath }/QueryAllmusicByType?pn=1&songtypeid=4">欧美</a></li>
+					<li><a href="${basePath }/to/allMusicActionType?pn=1&songtypeid=1">内地</a></li>
+					<li><a href="${basePath }/to/allMusicActionType?pn=1&songtypeid=2">台湾</a></li>
+					<li><a href="${basePath }/to/allMusicActionType?pn=1&songtypeid=3">日韩</a></li>
+					<li><a href="${basePath }/to/allMusicActionType?pn=1&songtypeid=4">欧美</a></li>
 					<li style="border-top:1px dotted #D7D7D7;margin:0 auto;padding-top:16px;width:144px;color:#000;text-indent:14px;font-size:20px;font-weight:500;margin-top:20px;">MV库</li>
-					<li><a href="page/Allmv.jsp">MV</a></li>
+					<li><a href="../page/Allmv.jsp">MV</a></li>
 				</ul>
 			</div>
 			<div class="c_right">
@@ -68,16 +68,16 @@
 					<h2>所有歌曲<span style="display:inline-block;color:#333;float:right;font-size:14px;margin-right:14px;line-height:60px;color:#0c8f44;">Follow</span></h2>
 				</div>
 				<ul class="r_ul">
-					<c:forEach items="${song_all }" var="item" varStatus="idx">
-						<li>
-							<span class="u_no">${idx.count }</span><span class="u_fen">-</span><span class="u_songname">${item.songname }</span><span class="u_singer">${item.singer }</span><span class="u_album">&lt;${item.album }&gt;</span><span class="u_upload">${item.uploaduserid }</span><span class="u_uptime">${item.uptime }</span><i style="margin-left:112px;" class="play"></i><i class="add"></i><i class="comment"></i>
+					<c:forEach items="${songlist }" var="item" varStatus="idx">
+						<li class="songlist" sid="${item.id }">
+							<span class="u_no">${idx.count }</span><span class="u_fen">-</span><span class="u_songname">${item['songname'] }</span><span class="u_singer">${item['singer'] }</span><span class="u_album">&lt;${item['album'] }&gt;</span><span class="u_upload">${item.uploaduser.username }</span><span class="u_uptime">${item['uptime'] }</span><i style="margin-left:112px;" class="play"></i><i class="add"></i><i class="comment"></i>
 						</li>
 					</c:forEach>
 				</ul>
-				<div class="s_pagecount">
+			<div class="s_pagecount">
 				<div class="p_content">
 					<c:if test="${curPage[0]>1 }">
-						<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/QueryAllmusicServlet?pn=${curPage[0]-1 }'/>">上一页</a>
+						<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/to/allMusicAction?pn=${curPage[0]-1 }'/>">上一页</a>
 					</c:if>
 					<%--计算begin,end --%>
 					<c:choose>
@@ -109,13 +109,13 @@
 								<span style="background:rgba(39,213,191,0.5);line-height:30px;text-align:center;display:inline-block;width:30px;height:30px;color:#fff;">${i }</span>
 							</c:when>
 							<c:otherwise>
-								<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:30px;height:30px;color:#333;" href="<c:url value='/QueryAllmusicServlet?pn=${i }'/>">${i }</a>
+								<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:30px;height:30px;color:#333;" href="<c:url value='/to/allMusicAction?pn=${i }'/>">${i }</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					
 					<c:if test="${curPage[0]<curPage[1] }">
-						<a  style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/QueryAllmusicServlet?pn=${curPage[0]+1 }'/>">下一页</a>
+						<a  style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/to/allMusicAction?pn=${curPage[0]+1 }'/>">下一页</a>
 					</c:if>
 				</div>
 			</div>
@@ -127,47 +127,16 @@
 <script type="text/javascript" src="${basePath }/js/dialog_login.js"></script>
 
 <script type="text/javascript">
-
-	//点击登录显示登录页面
-	$(".l_login").click(function(){
-		$.dialog({which:"login",page:"noIndex"});
+	
+	$(".songlist").click(function(){
+		// alert();
+		var sid = $(this).attr("sid");
+		// alert(sid);
+		window.location.href=basePath+"/to/musiccomments?sid="+sid+"&pn=1";
 	});
-	
-	//点击注册显示登录页面
-	$(".l_register").click(function(){
-		$.dialog({which:"register",page:"noIndex"});
-	});
-	
-	//点击我的音乐盒
-	function login(){
-		var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-		if(nologin=="true"){
-			$.dialog("login","null");
-		}else if(nologin=="false"){
-			window.open("<%=path%>/page/musicbox.jsp");
-		}
-	}
-	
-	//验证码换图片的函数
-	function changeCheckCode(){
-		var src = "../CheckCodeServlet?haha="+Math.random();
-		$(".checkcode").find("img").attr("src",src);
-	}
-</script>
-
-<script type="text/javascript">
-	
 	/**
 	 * 异步请求的方法
 	 */
-	 //点击保存修改
-	$(".submit").click(function(){
-		var username = document.getElementById("username").value;
-		var sex = document.getElementById("sex").value;
-		var parameter = "username="+username+"&sex="+sex;
-		sendRequest("../ChangeInfoServlet",parameter,callback);
-	});
-	 
 	//1.创建XMLHttpRequest
 	var xmlHttp;
 	function createXMLHttpRequest()

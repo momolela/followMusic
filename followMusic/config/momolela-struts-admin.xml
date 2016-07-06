@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 配置一些整个项目通用和全局的配置，比如登陆，拦截器 -->
+	<package name="defaults" extends="json-default">
+		<interceptors>
+			<interceptor name="methodInterceptor" class="methodInterceptor"></interceptor>
+			<interceptor name="loginInterceptorUser" class="loginInterceptorUser"></interceptor>
+			<interceptor name="loginInterceptorAdmin" class="loginInterceptorAdmin"></interceptor>
+			<interceptor name="loadRunInterceptor" class="loadRunInterceptor"></interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="methodInterceptor"></interceptor-ref>
+				<interceptor-ref name="loginInterceptorUser"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<global-results>
+			<result name="error" type="redirect">/404.jsp</result>
+			<result name="toIndex"  type="redirect">/first.jsp</result>
+			<result name="toLogin" type="redirect">/login.jsp</result>
+		</global-results>
+	</package>
+	
+	<!-- 用户包 -->
+	<package name="AdminActionPKG" namespace="/users" extends="defaults">
+		<action name="/*/*" method="{2}" class="{1}Action">
+			<result type="json" name="ajaxSuccess">
+				<param name="ignoreHierarchy">false</param><!-- 这个属性表示是否忽略等级，也就是继承关系,设置为 false 后会将父类和子类的属性一起返回 -->
+				<param name="excludeNullProperties">true</param><!-- 这个属性表示去除空数据 -->
+			</result>
+			<result name="adminlogin">/WEB-INF/adminpage/admin_login.jsp</result>
+			<result name="toAdminLogin">/WEB-INF/adminpage/admin_login.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 页面跳转包 -->
+	<package name="ToAdminPKG" namespace="/admin" extends="defaults">
+		<action name="/*/*" method="{2}" class="{1}Action">
+			<result name="adminindex">/WEB-INF/adminpage/index.jsp</result>
+			<result name="pagemanage">/WEB-INF/adminpage/pagemanage.jsp</result>
+			<interceptor-ref name="loginInterceptorAdmin"></interceptor-ref>
+			<interceptor-ref name="loadRunInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	</package>
+	
+</struts>

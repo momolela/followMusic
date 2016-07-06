@@ -48,32 +48,20 @@
 		<div class="m-banner">
 			<div class="b_focus">
 				<ul class="b-img">
-					<li>
-						<a href="#"><img src="<%=path %>/images/banner/1.jpg"/></a>
-						<div class="i-desc1">
-							<h2>BigBang强势回归</h2>
-							<p style="font-size:22px;">2015年6月，时隔三年后的BigBang携带新作《made》。强势回归。</p>
-						</div>
-					</li>
-					<li>
-						<a href="#"><img src="<%=path %>/images/banner/2.jpg"/></a>
-						<div class="i-desc2">
-							<h2>邓紫棋全国巡演</h2>
-							<p style="font-size:22px;">G.E.M</p>
-							<p style="font-size:36px;">X.X.X.</p>
-							<p style="font-size:22px;">LIVE</p>
-						</div>
-					</li>
-					<li>
-						<a href="#"><img src="<%=path %>/images/banner/3.jpg"/></a>
-					</li>
+					<c:forEach items="${bannerlist }" var="item">
+						<li class="bannercount">
+							<a href="javascript:void(0)"><img src="${basePath }/${item.burl }"/></a>
+							<div class="b_desc">
+								<h2>${item.btitle }</h2>
+								<p style="font-size:22px;">${item.bcontent }</p>
+							</div>
+						</li>
+					</c:forEach>
 				</ul>
 				<div class="b-bottom">
 					<div class="point">
 						<ul>
 							<li class="no"></li>
-							<li></li>
-							<li></li>
 						</ul>
 					</div>
 				</div>
@@ -117,26 +105,26 @@
 						<ul>
 							<li>
 								<a href="#"><img src="<%=path %>/images/music/1.jpg" width="240px" height="124px"/></a>
-								<div url="music/BigBang-if you.mp3" songname="if you" singer="BigBang" album="M" class="r-mask">
+								<div url="${basePath }/music/1/BigBang-if you.mp3" songname="if you" singer="BigBang" album="D" class="r-mask">
 									<i></i><a href="javascript:void(0)" class="m-add" songid="1">+</a>
 								</div>
 							</li>
 							<li style="float:right;">
 								<a href="#"><img src="<%=path %>/images/music/2.jpg" width="240px" height="124px"/></a>
-								<div url="music/BIGBANG-WE LIKE 2 PARTY.mp3" songname="WE LIKE 2 PARTY" singer="BIGBANG" album="D" class="r-mask">
-									<i></i><a href="javascript:void(0)" class="m-add" songid="21">+</a>
+								<div url="${basePath }/music/3/BIGBANG-WE LIKE 2 PARTY.mp3" songname="WE LIKE 2 PARTY" singer="BIGBANG" album="D" class="r-mask">
+									<i></i><a href="javascript:void(0)" class="m-add" songid="9">+</a>
 								</div>
 							</li>
 							<li style="margin-top:20px;">
 								<a href="#"><img src="<%=path %>/images/music/3.jpg" width="240px" height="124px"/></a>
-								<div url="music/任贤齐-我是一只鱼.mp3" songname="我是一只鱼" singer="任贤齐" album="海洋" class="r-mask">
-									<i></i><a href="javascript:void(0)" class="m-add" songid="5">+</a>
+								<div url="${basePath }/music/1/任贤齐-我是一只鱼.mp3" songname="我是一只鱼" singer="任贤齐" album="海洋" class="r-mask">
+									<i></i><a href="javascript:void(0)" class="m-add" songid="2">+</a>
 								</div>
 							</li>
 							<li style="float:right;margin-top:20px;">
 								<a href="#"><img src="<%=path %>/images/music/4.jpg" width="240px" height="124px"/></a>
-								<div url="music/bigbang-Let us not fall in love.mp3" songname="Let us not fall in love" singer="bigbang" album="D" class="r-mask">
-									<i></i><a href="javascript:void(0)" class="m-add" songid="20">+</a>
+								<div url="${basePath }/music/3/bigbang-Let us not fall in love.mp3" songname="Let us not fall in love" singer="bigbang" album="A" class="r-mask">
+									<i></i><a href="javascript:void(0)" class="m-add" songid="8">+</a>
 								</div>
 							</li>
 						</ul>
@@ -305,7 +293,7 @@
 	<!--ui-audioface start-->
 	<div id="ui-audioface">
 		<div class="ui-content">
-			<img src="images/music_control/disk.png" class="ui-disk"/>
+			<img src="${basePath }/images/music_control/disk.png" class="ui-disk"/>
 			<dl class="ui-info">
 				<dt>请选择歌曲</dt>
 				<dd></dd>
@@ -345,7 +333,7 @@
 			<canvas id="canvas"></canvas>
 		</div>
 		<div class="ui-alert" style="width:20px;height:20px;position:absolute;top:-22px;right:0;">
-			<i style="display:block;width:20px;height:20px;background:url('images/music_control/icons.png') -375px -89px;display:none;"></i>
+			<i style="display:block;width:20px;height:20px;background:url('${basePath }/images/music_control/icons.png') -375px -89px;display:none;"></i>
 		</div>
 	</div>
 	<!-- end ui-audioface-->
@@ -361,7 +349,7 @@
 				<div class="w-hover">
 					<div class="h-span"></div>
 					<div class="h-erweima">
-						<img src="images/weixin/weixin.jpg" width="120" height="120"/>
+						<img src="${basePath }/images/weixin/weixin.jpg" width="120" height="120"/>
 					</div>
 				</div>
 			</li>
@@ -372,52 +360,24 @@
 	</div>
 	<!-- end right -->
 	
-<script type="text/javascript" src="js/audioface.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/dialog_login.js"></script>
-<script type="text/javascript" src="<%=path %>/js/head.js"></script>
+<script type="text/javascript" src="${basePath }/js/audioface.js"></script>
+<script type="text/javascript" src="${basePath }/js/index.js"></script>
+<script type="text/javascript" src="${basePath }/js/jquery.js"></script>
+<script type="text/javascript" src="${basePath }/js/dialog_login.js"></script>
+<script type="text/javascript" src="${basePath }/js/head.js"></script>
 <script type="text/javascript">
-
-	//点击登录显示登录页面
-	$(".l_login").click(function(){
-		$.dialog({which:"login",page:"index"});
-	});
-	
-	//点击注册显示登录页面
-	$(".l_register").click(function(){
-		$.dialog({which:"register",page:"index"});
-	});
-	
-	//验证码换图片的函数
-	function changeCheckCode(){
-		var src = "${basePath}/checkcode?haha="+Math.random();
-		$(".checkcode").find("img").attr("src",src);
-	}
-	
-	//点击我的音乐盒
-	function login(){
-		var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-		var url = "<%=path%>/page/musicbox.jsp";
-		if(nologin=="true"){
-			$.dialog("login","index");
-		}else if(nologin=="false"){
-			window.open(url);
-		}
-	};
-	
-	//点击主页上的添加到我的音乐
+	//点击主页上的添加到我收藏的音乐
 	$("#mc .m-content .c-music .c-music-bottom .b-right ul li .r-mask .m-add").click(function(e){
+		// alert();
 		if(e&&e.stopPropagation){e.stopPropagation();}else{window.event.cancelBubble = true;}
 		var songid = $(this).attr("songid");
-		var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-		var url = "<%=path%>/AddUserlikeServlet?songid="+songid;
-		if(nologin=="true"){
-			$.dialog("login","index");
-		}else if(nologin=="false"){
+		var url = "${basePath}/AddUserlikeServlet?songid="+songid;
+		if($(".h-user .u-name b").text() != ""){
 			//ajax提交添加自己喜欢的歌曲
 			var parameter = "songid="+songid;
 			sendRequest(url,parameter,callback_addMusic);
+		}else{
+			$.dialog({which:"login"});
 		}
 		//回调的方法
 		function callback_addMusic()
@@ -426,13 +386,33 @@
 			{
 				if(xmlHttp.status==200)
 				{
-					eval(xmlHttp.responseText);
-					if(result.flag)
+					var data = eval("("+xmlHttp.responseText+")");
+					if(data.result == "success")
 					{
 						alert("恭喜你，添加自己喜欢的歌曲成功");
 					}
 				}
 			}
+		}
+	});
+	
+	// banner中point的个数，根据banner的帧数加载。
+	$(function(){
+		// alert();
+		
+		// 获取banner的帧数
+		var bannercount = $(".bannercount").length;
+		
+		//
+		for(var i = 1;i<bannercount;i++){
+			$("#mc .m-banner .point ul").append("<li></li>");
+			
+			$(".m-banner .b-bottom .point").find("li").on("click",this,function(){
+			$(this).addClass("no").siblings().removeClass("no");
+			var _index=$(this).index();
+			index=_index;
+			$(".m-banner .b-img").find("li").eq(_index).fadeIn("400").siblings().hide();
+		});
 		}
 	});
 <%--	

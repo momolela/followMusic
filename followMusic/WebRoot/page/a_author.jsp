@@ -89,34 +89,6 @@
 <script type="text/javascript" src="${basePath}/js/jquery.js"></script>
 <script type="text/javascript" src="${basePath}/js/head.js"></script>
 <script type="text/javascript" src="${basePath}/js/dialog_login.js"></script>
-<script type="text/javascript">
-
-	//点击登录显示登录页面
-	$(".l_login").click(function(){
-		$.dialog({which:"login",page:"noIndex"});
-	});
-	
-	//点击注册显示登录页面
-	$(".l_register").click(function(){
-		$.dialog({which:"register",page:"noIndex"});
-	});
-
-	//点击我的音乐盒
-	function login(){
-		var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-		if(nologin=="true"){
-			$.dialog("login","null");
-		}else if(nologin=="false"){
-			window.open("<%=path%>/page/musicbox.jsp");
-		}
-	}
-	
-	//验证码换图片的函数
-	function changeCheckCode(){
-		var src = "../CheckCodeServlet?haha="+Math.random();
-		$(".checkcode").find("img").attr("src",src);
-	}
-</script>
 
 <script type="text/javascript">
 	/**

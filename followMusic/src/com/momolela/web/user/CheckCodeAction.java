@@ -12,7 +12,8 @@ import java.io.ByteArrayInputStream;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.momolela.util.CodeMake;
 import com.momolela.util.ImgMake;
@@ -22,7 +23,8 @@ import com.opensymphony.xwork2.ActionSupport;
  *  @ClassName: CheckCodeAction  @Description:   @author: momolela
  *  @date 2016-4-20 下午12:41:43  
  */
-@Component("checkCodeAction")
+@Controller("checkCodeAction")
+@Scope("prototype")
 public class CheckCodeAction extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = 1L;

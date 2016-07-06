@@ -25,14 +25,14 @@
 			.userInfo .u_info .left_nav .n_info ul li a{color:#bbb;display:block;width:160px;height:40px;}
 			.userInfo .u_info .left_nav .n_info ul li a:hover{background:#f7f7f7;color:#000;}
 			.userInfo .u_info .left_nav .n_info .title{width:260px;height:40px;background:#f7f7f7;}
-			.userInfo .u_info .left_nav .n_info .title i{display:inline-block;width:20px;height:20px;vertical-align:middle;background:url("../images/icon2.png") -28px -214px;margin:10px 0 0 40px;}
+			.userInfo .u_info .left_nav .n_info .title i{display:inline-block;width:20px;height:20px;vertical-align:middle;background:url("${basePath }/images/icon2.png") -28px -214px;margin:10px 0 0 40px;}
 			.userInfo .u_info .left_nav .n_info .title p{width:160px;height:40px;float:right;line-height:40px;font-size:16px;color:#999;}
 			.userInfo .u_info .left_nav .n_safe{width:260px;height:190px;background:#fff;border-top:5px solid #bbb;}
 			.userInfo .u_info .left_nav .n_safe ul li{width:160px;height:40px;margin:22px 0 0 50px;text-align:center;line-height:40px;font-size:14px;}
 			.userInfo .u_info .left_nav .n_safe ul li a{color:#bbb;display:block;width:160px;height:40px;}
 			.userInfo .u_info .left_nav .n_safe ul li a:hover{background:#f7f7f7;color:#000;}
 			.userInfo .u_info .left_nav .n_safe .title{width:260px;height:40px;background:#f7f7f7;}
-			.userInfo .u_info .left_nav .n_safe .title i{display:inline-block;width:20px;height:20px;vertical-align:middle;background:url("../images/icon2.png") -55px -214px;margin:10px 0 0 40px;}
+			.userInfo .u_info .left_nav .n_safe .title i{display:inline-block;width:20px;height:20px;vertical-align:middle;background:url("${basePath }/images/icon2.png") -55px -214px;margin:10px 0 0 40px;}
 			.userInfo .u_info .left_nav .n_safe .title p{width:160px;height:40px;float:right;line-height:40px;font-size:16px;color:#999;}
 			.userInfo .u_info .mid .mid_info{padding:40px;width:740px;height:420px;background:#fff;border-radius:4px;position:absolute;left:318px;}
 			.userInfo .u_info .mid .mid_info form{font-size:16px;color:#000;}
@@ -41,10 +41,10 @@
 			.userInfo .u_info .mid .mid_info form .sex{width:250px;height:36px;border-radius:5px;border:1px solid #e1e1e1;background:#fafafa;outline:none;font-size:16px;padding-left:10px;}
 			.userInfo .u_info .mid .mid_info .submit{display:block;background:#6eb88c;border:1px solid #6eb88c;width:130px;height:40px;border-radius:4px;font-size:15px;color:#fff;font-weight:bold;line-height:40px;text-align:center;margin:30px 0 0 0;cursor:pointer;}
 			.userInfo .u_info .right_nav{width:60px;height:200px;background:#fff;border-radius:4px 0 0 4px;float:right;margin-top:140px;border-right:5px solid #66cc33;}
-			.userInfo .u_info .right_nav i{margin:52px 0 0 20px;display:inline-block;width:19px;height:19px;background:url("../images/icon2.png") -111px -214px;}
+			.userInfo .u_info .right_nav i{margin:52px 0 0 20px;display:inline-block;width:19px;height:19px;background:url("${basePath }/images/icon2.png") -111px -214px;}
 			.userInfo .u_info .right_nav p{width:60px;height:100px;text-align:center;line-height:18px;font-size:16px;color:#999;}
 			.userInfo .u_info .right_back{display:block;width:50px;height:50px;position:absolute;right:50px;bottom:46px;background:rgba(0,0,0,.1);}
-			.userInfo .u_info .right_back i{display:block;width:18px;height:18px;background:url('../images/icon2.png');background-position:-138px -104px;margin:16px 0 0 14px;}
+			.userInfo .u_info .right_back i{display:block;width:18px;height:18px;background:url('${basePath }/images/icon2.png');background-position:-138px -104px;margin:16px 0 0 14px;}
 			.userInfo .u_info .right_back .b_back{display:none;width:80px;height:50px;background:#fff;position:absolute;left:50px;bottom:0px;color:#6eb88c;font-size:12px;line-height:50px;text-align:center;}
 			
 		</style>
@@ -66,7 +66,7 @@
 					</div>
 					<ul>
 						<li class="basicinfo"><a href="javascript:void(0)">基本信息</a></li>
-						<li class="pic"><a href="${basePath }/page/UserPic.jsp">头像设置</a></li>
+						<li class="pic"><a href="${basePath }/to/page/toUserPic">头像设置</a></li>
 					</ul>
 				</div>
 				<div class="n_safe">
@@ -75,8 +75,8 @@
 						<p>账号安全</p>
 					</div>
 					<ul>
-						<li class="modipassword"><a href="${basePath }/page/UserPsw.jsp">修改密码</a></li>
-						<li class="modiemail"><a href="${basePath }/page/UserMail.jsp">邮箱设置</a></li>
+						<li class="modipassword"><a href="${basePath }/to/page/toUserPsw">修改密码</a></li>
+						<li class="modiemail"><a href="${basePath }/to/page/toUserMail">邮箱设置</a></li>
 					</ul>
 				</div>
 			</div>
@@ -106,9 +106,7 @@
 			<!-- right_back start -->
 			<a class="right_back" href="${basePath }/page/UserMusic.jsp">
 				<i></i>
-				<div class="b_back">
-					回到我的歌曲
-				</div>
+				<div class="b_back">回到我的歌曲</div>
 			</a>
 			<!-- end right_back -->
 		</div>
@@ -144,14 +142,6 @@
 		},function(){
 			$(this).find("div").slideLeftHide(400);
 	});
-	
-	//点击我的音乐盒
-	function login(){
-		var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-		if(nologin=="false"){
-			window.open("<%=path%>/page/musicbox.jsp");
-		}
-	}
 </script>
 
 <script type="text/javascript">
@@ -164,7 +154,7 @@
 		var username = document.getElementById("username").value;
 		var sex = document.getElementById("sex").value;
 		var parameter = "username="+username+"&sex="+sex;
-		sendRequest("../ChangeInfoServlet",parameter,callback);
+		sendRequest("${basePath }/user/changeInfo",parameter,callback_changeInfo);
 	});
 	 
 	//1.创建XMLHttpRequest
@@ -197,19 +187,19 @@
 	}
 	
 	//3.回调方法
-	function callback()
+	function callback_changeInfo()
 	{
 		if(xmlHttp.readyState==4)
 		{
 			if(xmlHttp.status==200)
 			{
-				eval(xmlHttp.responseText);
-				if(result.flag)
+				var data = eval("(" + xmlHttp.responseText +")" );
+				if(data.result == "success")
 				{
 					window.location.reload(location);
 				}
 				else{
-					document.getElementById("error_msg").innerHTML=result.message;
+					document.getElementById("error_msg").innerHTML=data.message;
 				}
 			}
 		}

@@ -11,8 +11,7 @@
 		<meta name="Keywords" content="follow音乐,mv,音乐资讯">
 		<meta name="Description" content="follow音乐网,最全面最华丽的音乐网,好听,好看,尽在follow音乐网.音乐,MV,音乐资讯一手掌握.就来follow音乐网.">
 		<title>follow音乐网-头像</title>
-		<link type="text/css" rel="stylesheet" href="${basePath }/css/index.css"></link>
-		<link rel="shortcut icon" href="${basePath }/images/fw.ico" />
+		<%@include file="/commons/public.jsp" %>
 		<style type="text/css">
 			.mid_title{font-size:18px;color:#000;border-bottom:1px solid #bbb;}
 			.userInfo{width:100%;height:580px;background:#efefef;}
@@ -26,24 +25,24 @@
 			.userInfo .u_info .left_nav .n_info ul li a{color:#bbb;display:block;width:160px;height:40px;}
 			.userInfo .u_info .left_nav .n_info ul li a:hover{background:#f7f7f7;color:#000;}
 			.userInfo .u_info .left_nav .n_info .title{width:260px;height:40px;background:#f7f7f7;}
-			.userInfo .u_info .left_nav .n_info .title i{display:inline-block;width:20px;height:20px;vertical-align:middle;background:url("../images/icon2.png") -28px -214px;margin:10px 0 0 40px;}
+			.userInfo .u_info .left_nav .n_info .title i{display:inline-block;width:20px;height:20px;vertical-align:middle;background:url("${basePath }/images/icon2.png") -28px -214px;margin:10px 0 0 40px;}
 			.userInfo .u_info .left_nav .n_info .title p{width:160px;height:40px;float:right;line-height:40px;font-size:16px;color:#999;}
 			.userInfo .u_info .left_nav .n_safe{width:260px;height:190px;background:#fff;border-top:5px solid #bbb;}
 			.userInfo .u_info .left_nav .n_safe ul li{width:160px;height:40px;margin:22px 0 0 50px;text-align:center;line-height:40px;font-size:14px;}
 			.userInfo .u_info .left_nav .n_safe ul li a{color:#bbb;display:block;width:160px;height:40px;}
 			.userInfo .u_info .left_nav .n_safe ul li a:hover{background:#f7f7f7;color:#000;}
 			.userInfo .u_info .left_nav .n_safe .title{width:260px;height:40px;background:#f7f7f7;}
-			.userInfo .u_info .left_nav .n_safe .title i{display:inline-block;width:20px;height:20px;vertical-align:middle;background:url("../images/icon2.png") -55px -214px;margin:10px 0 0 40px;}
+			.userInfo .u_info .left_nav .n_safe .title i{display:inline-block;width:20px;height:20px;vertical-align:middle;background:url("${basePath }/images/icon2.png") -55px -214px;margin:10px 0 0 40px;}
 			.userInfo .u_info .left_nav .n_safe .title p{width:160px;height:40px;float:right;line-height:40px;font-size:16px;color:#999;}
 			.userInfo .u_info .mid .mid_pic{padding:40px;width:740px;height:420px;background:#fff;border-radius:4px;position:absolute;left:318px;}
 			.userInfo .u_info .mid .mid_pic form .img_box{width:200px;height:200px;border:1px solid #ccc;border-radius:6px;margin-top:20px;}
 			.userInfo .u_info .mid .mid_pic form .file{width:200px;height:200px;opacity:0;cursor:pointer;}
 			.userInfo .u_info .mid .mid_pic .submit{display:block;background:#6eb88c;border:1px solid #6eb88c;width:130px;height:40px;border-radius:4px;font-size:15px;color:#fff;font-weight:bold;line-height:36px;text-align:center;margin-top:60px;}
 			.userInfo .u_info .right_nav{width:60px;height:200px;background:#fff;border-radius:4px 0 0 4px;float:right;margin-top:140px;border-right:5px solid #66cc33;}
-			.userInfo .u_info .right_nav i{margin:52px 0 0 20px;display:inline-block;width:19px;height:19px;background:url("../images/icon2.png") -111px -214px;}
+			.userInfo .u_info .right_nav i{margin:52px 0 0 20px;display:inline-block;width:19px;height:19px;background:url("${basePath }/images/icon2.png") -111px -214px;}
 			.userInfo .u_info .right_nav p{width:60px;height:100px;text-align:center;line-height:18px;font-size:16px;color:#999;}
 			.userInfo .u_info .right_back{display:block;width:50px;height:50px;position:absolute;right:50px;bottom:46px;background:rgba(0,0,0,.1);}
-			.userInfo .u_info .right_back i{display:block;width:18px;height:18px;background:url('../images/icon2.png');background-position:-138px -104px;margin:16px 0 0 16px;}
+			.userInfo .u_info .right_back i{display:block;width:18px;height:18px;background:url('${basePath}/images/icon2.png');background-position:-138px -104px;margin:16px 0 0 16px;}
 			.userInfo .u_info .right_back .b_back{display:none;width:80px;height:50px;background:#fff;position:absolute;left:50px;bottom:0px;color:#6eb88c;font-size:12px;line-height:50px;text-align:center;}
 			
 		</style>
@@ -64,7 +63,7 @@
 						<p>个人资料</p>
 					</div>
 					<ul>
-						<li class="basicinfo"><a href="${basePath }/page/UserInfo.jsp">基本信息</a></li>
+						<li class="basicinfo"><a href="${basePath }/to/page/toUserInfo">基本信息</a></li>
 						<li class="pic"><a href="javascript:void(0)">头像设置</a></li>
 					</ul>
 				</div>
@@ -74,8 +73,8 @@
 						<p>账号安全</p>
 					</div>
 					<ul>
-						<li class="modipassword"><a href="${basePath }/page/UserPsw.jsp">修改密码</a></li>
-						<li class="modiemail"><a href="${basePath }/page/UserMail.jsp">邮箱设置</a></li>
+						<li class="modipassword"><a href="${basePath }/to/page/toUserPsw">修改密码</a></li>
+						<li class="modiemail"><a href="${basePath }/to/page/toUserMail">邮箱设置</a></li>
 					</ul>
 				</div>
 			</div>
@@ -88,7 +87,7 @@
 					<form action="ChangePicServlet" enctype="multipart/form-data" method="post">
 						<div class="img_box">
 							<input id="file" class="file"  type="file" name="file" title="点击上传头像"  onchange="uploadFace(this);">
-							<img src="../images/user/img.png" style="position:absolute;top:170px;left:126px;"/>
+							<img src="${basePath }/images/user/img.png" style="position:absolute;top:170px;left:126px;"/>
 							<a href="javascript:void(0)" class="submit" onclick="UploadFile()">确认上传</a>
 						</div>
 					</form>
@@ -148,14 +147,6 @@
 		},function(){
 			$(this).find("div").slideLeftHide(400);
 	});
-	
-	//点击我的音乐盒
-	function login(){
-		var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-		if(nologin=="false"){
-			window.open("<%=path%>/page/musicbox.jsp");
-		}
-	}
 </script>
 
 <script type="text/javascript">
@@ -183,7 +174,6 @@
 			//将图片加载到div盒子中
 			var preview=document.getElementById("preview");
 			preview.src=window.URL.createObjectURL(sender.files[0]);
-
 		}
 	}
 	
@@ -193,12 +183,12 @@
 	function UploadFile() {
 
             var fileObj = document.getElementById("file").files[0]; // 获取文件对象
-            var FileController = "../ChangePicServlet";                   // 接收上传文件的后台地址 
+            var FileController = "${basePath }/user/changePic";                   // 接收上传文件的后台地址 
 
             // FormData 对象
 
             var form = new FormData();
-            form.append("author", "hooyes");                        // 可以增加表单数据
+            form.append("name", "pic");                        // 可以增加表单数据
             form.append("file", fileObj);                           // 文件对象
 
             // XMLHttpRequest 对象

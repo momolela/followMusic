@@ -77,7 +77,7 @@
 	<div class="music_box">
 		<!-- myAudio start -->
 		<div id="myAudio">
-			<audio>
+			<audio id="audio">
 				<c:forEach items="${songarray }" var="item" varStatus="idx">
 					<source title="${item.singer }-${item.songname }_${item.album }.mp3" src="<%=path %>/${item.url }" />
 				</c:forEach>
@@ -123,12 +123,12 @@
 							<img src="${basePath }/images/menu/4.jpg" alt="album's pic" width="280px" height="310px"/>
 						</div>
 						<div class="t_right">
-							<c:if test="${songarray[0]==null }">
+							<c:if test="${songarray==null }">
 								<p class="r_singer" id="r_singer">Follow 音乐</p>
 								<span class="r_album" id="r_album">&lt;music&gt;</span>
 								<p class="r_songname" id="r_songname">极致体验</p>
 							</c:if>
-							<c:if test="${songarray[0]!=null }">
+							<c:if test="${songarray!=null }">
 								<p class="r_singer" id="r_singer">${songarray[0].singer }</p>
 								<span class="r_album" id="r_album">&lt;${songarray[0].album }&gt;</span>
 								<p class="r_songname" id="r_songname">${songarray[0].songname }</p>
@@ -155,7 +155,7 @@
 						<span class="share"><i></i>分享这首歌</span>
 					</div>
 					<div class="b_bottom">
-						<a href="${basePath }/QueryAllmusicServlet?pn=1" target="_blank">去添加喜欢的歌曲</a>
+						<a href="${basePath }/to/allMusicAction?pn=1" target="_blank">去添加喜欢的歌曲</a>
 					</div>
 				</div>
 			</div>
@@ -174,8 +174,8 @@
 		$("#myAudio").initAudio();
 	});
 	
-	var staut1 = 1;//1代表没有，0代表有
-	var staut2 = 1;//1代表没有，0代表有
+	var staut1 = 1;//1代表关闭了，0代表展开了
+	var staut2 = 1;//1代表关闭了，0代表展开了
 	
 	//点击展开喜欢的音乐列表
 	$(".l_nav ul li .n_love").click(function(){
@@ -189,7 +189,6 @@
 		}
 	});
 	
-	//
 	$(".n_upload").hover(function(){
 		$(this).css("background","rgba(150,171,165,0.5)");
 	},function(){
@@ -271,7 +270,6 @@
 			}
 		}
 	}
-	
 	//提交登录事件
 	function ajaxsonginfo(){
 		var n_songname = document.getElementById("n_songname").value;
@@ -285,7 +283,7 @@
 	function loadLrc(name){
 		$.ajax({
 			type:"post",
-			url:"../utilPage/lrc.jsp",
+			url:basePath+"/utilPage/lrc.jsp",
 			data:{"name":name},
 			success:function(data){
 				var lrc = data;

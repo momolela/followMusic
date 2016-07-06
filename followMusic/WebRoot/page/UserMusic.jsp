@@ -11,9 +11,7 @@
 		<meta name="Keywords" content="follow音乐,mv,音乐资讯">
 		<meta name="Description" content="follow音乐网,最全面最华丽的音乐网,好听,好看,尽在follow音乐网.音乐,MV,音乐资讯一手掌握.就来follow音乐网.">
 		<title>follow音乐-用户音乐</title>
-		<link type="text/css" rel="stylesheet" href="${basePath }/css/index.css"></link>
-		<link type="text/css" rel="stylesheet" href="${basePath }/css/animate.css"></link>
-		<link rel="shortcut icon" href="${basePath }/images/fw.ico" />
+		<%@include file="/commons/public.jsp" %>
 		<style type="text/css">
 			.mid_title{font-size:18px;color:#000;border-bottom:1px solid #bbb;}
 			.userInfo{width:100%;height:580px;background:#efefef;}
@@ -115,14 +113,6 @@
 		},function(){
 			$(this).find("div").slideLeftHide(400);
 	});
-	
-	//点击我的音乐盒
-	function login(){
-		var nologin = "<%=request.getSession().getAttribute("nologin")%>";
-		if(nologin=="false"){
-			window.open("<%=path%>/page/musicbox.jsp");
-		}
-	}
 </script>
 <!-- 
 <script type="text/javascript">

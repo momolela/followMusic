@@ -1,18 +1,10 @@
 $.dialog = function(opts){
 	var animate = animateIn();
-	Page = opts.page;
 	
-	if(opts.page!="index"){
-		checkcodeservlet = "../checkcode";
-		loginservlet = "../user/login";
-		registerservlet = "../user/register";
-		checknameservlet = "../user/checkName";
-	}else{
-		checkcodeservlet = "checkcode";
-		loginservlet = "user/login";
-		registerservlet = "user/register";
-		checknameservlet = "user/checkName";
-	}
+	checkcodeservlet = basePath+"/checkcode";
+	loginservlet = basePath+"/user/login";
+	registerservlet = basePath+"/user/register";
+	checknameservlet = basePath+"/user/checkName";
 	
 	var dialog_login = "<div class='login "+animate+"'>"+
 						"<h2>登录|<a class='to_register' href='#'>注册 </a></h2>"+
@@ -81,6 +73,10 @@ $.dialog = function(opts){
 					"		</div>"+
 					"	</div>";
 	
+	var dialog_loading = "<div id='loading' class='animated fadeInDown'>"+
+					"	  		<img src='"+basePath+"/images/loading.gif' width='60' height='60' alt='loading'/><span class='l_content'>"+opts.content+"</span>"+
+					"     </div>";
+	
 	if(opts.which=="login"){
 		var dialog = dialog_login;
 		var mask = "<div class='login_mask'></div>";
@@ -90,6 +86,9 @@ $.dialog = function(opts){
 	}else if(opts.which=="alert"){
 		var dialog = dialog_alert;
 		var mask = "<div class='alert_mask'></div>";
+	}else if(opts.which=="loading"){
+		var dialog = dialog_loading;
+		var mask = "<div class='loading_mask'></div>";
 	}
 	// 创建一个插件模板
 	var $dialog = $(dialog);
@@ -109,7 +108,7 @@ function center($dialog){
 	var wh = $(window).height();
 	var _left = (ww - width) / 2;
 	var _top = (wh - height) / 2;
-	$dialog.css({top:_top,left:_left});
+	$dialog.css({top:_top,left:_left,position:"fixed"});
 }
 
 //浏览器窗口改变的时候居中定位
@@ -184,6 +183,12 @@ function initEvent($dialog,opts){
 		}, 1000);
 	});
 	
+	// 点击loading的mask关闭
+	$(".loading_mask").click(function(){
+		$("#loading").remove();
+		$(".loading_mask").remove();
+	});
+	
 	// 点击登录中的跳转注册
 	$dialog.find(".to_register").click(function(){
 		var animateout = animateOut();
@@ -196,7 +201,7 @@ function initEvent($dialog,opts){
 			$(".login_mask").remove();
 		}, 1000);
 		//跳转注册
-		$.dialog({which:"register",page:Page});
+		$.dialog({which:"register"});
 	});
 	
 	// 点击注册中的跳转登录
@@ -211,7 +216,7 @@ function initEvent($dialog,opts){
 			$(".register_mask").remove();
 		}, 1000);
 		//跳转登录
-		$.dialog({which:"login",page:Page});
+		$.dialog({which:"login"});
 	});
 	
 	//提交登录事件

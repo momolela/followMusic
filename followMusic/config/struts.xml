@@ -5,4 +5,5 @@
 <struts>
 	<constant name="struts.devMode" value="true"/>
 	<include file="momolela-struts-defaults.xml"></include>
+	<include file="momolela-struts-admin.xml"></include>
 </struts>

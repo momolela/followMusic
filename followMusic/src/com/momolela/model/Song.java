@@ -9,12 +9,20 @@
 package com.momolela.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,7 +31,8 @@ import javax.persistence.TemporalType;
  * @author: momolela  
  * @date 2016-5-29 下午10:31:08
  */
-@Entity(name = "song")
+@Entity
+@Table(name = "song")
 public class Song {
 	private Integer id;
 	private String songname;
@@ -31,8 +40,11 @@ public class Song {
 	private String album;
 	private Date uptime;
 	private String url;
-	private Integer uploaduserid;
-	private Integer songtypeid;
+	private User uploaduser;
+	private SongType songtype;
+	private Lrc lrc;
+
+	private Set<CommentsList> commentsList = new HashSet<CommentsList>();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,21 +103,43 @@ public class Song {
 		this.url = url;
 	}
 
-	@Column(name = "songtypeid")
-	public Integer getSongtypeid() {
-		return songtypeid;
+	@ManyToOne
+	@JoinColumn(name = "songtypeid")
+	public SongType getSongtype() {
+		return songtype;
 	}
 
-	public void setSongtypeid(Integer songtypeid) {
-		this.songtypeid = songtypeid;
+	public void setSongtype(SongType songtype) {
+		this.songtype = songtype;
 	}
 
-	@Column(name = "uploaduserid")
-	public Integer getUploaduserid() {
-		return uploaduserid;
+	@ManyToOne
+	@JoinColumn(name = "uploaduserid")
+	public User getUploaduser() {
+		return uploaduser;
 	}
 
-	public void setUploaduserid(Integer uploaduserid) {
-		this.uploaduserid = uploaduserid;
+	public void setUploaduser(User uploaduser) {
+		this.uploaduser = uploaduser;
+	}
+
+	@OneToOne
+	@JoinColumn(name="lrcid")
+	public Lrc getLrc() {
+		return lrc;
+	}
+
+	public void setLrc(Lrc lrc) {
+		this.lrc = lrc;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "sid")
+	public Set<CommentsList> getCommentsList() {
+		return commentsList;
+	}
+
+	public void setCommentsList(Set<CommentsList> commentsList) {
+		this.commentsList = commentsList;
 	}
 }

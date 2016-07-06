@@ -3,13 +3,14 @@ $(function(){
 		var index=0;
 		play();
 		$(".b_focus").hover(function(){clearInterval(Time);},function(){play();});
-		$(".m-banner .b-bottom .point").find("li").hover(function(){
+		
+		$(".m-banner .b-bottom .point").find("li").click(function(){
 			$(this).addClass("no").siblings().removeClass("no");
 			var _index=$(this).index();
 			index=_index;
 			$(".m-banner .b-img").find("li").eq(_index).fadeIn("400").siblings().hide();
 		});
-
+		
 		$(".b-right").click(function(){
 			index++;
 			var length=$(".m-banner .b-img").find("li").length;
@@ -76,11 +77,11 @@ $(function(){
 	}
 
 	//2.异步请求的方法
-	function sendRequest(url,parameter,callback_audio)
+	function sendRequest(url,parameter,callback)
 	{
 		createXMLHttpRequest();
 		//当准备状态发生变化时调用callBack()
-		xmlHttp.onreadystatechange=callback_audio;
+		xmlHttp.onreadystatechange=callback;
 		xmlHttp.open("POST",url, true);
 		xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlHttp.send(parameter);

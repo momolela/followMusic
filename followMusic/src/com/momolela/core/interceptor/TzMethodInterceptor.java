@@ -14,7 +14,7 @@ import com.momolela.util.TzStringUtils;
 /**
  * 
  * @ClassName: TzMethodInterceptor
- * @Description: 判断请求是否合法的拦截器，不合法就返回error，跳转到error.jsp页面
+ * @Description: 判断请求是否合法的拦截器，不合法就返回error，跳转到404.jsp页面
  * @author: momolela
  * @date 2016-5-12 下午5:01:25
  * 

@@ -56,6 +56,13 @@
     <!-- 本地会话工厂bean,spring整合hibernate的核心入口 -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
+        
+        <property name="namingStrategy">
+			<bean class="org.hibernate.cfg.ImprovedNamingStrategy" />
+		 </property>
+		<!-- 获取实体目录 也就是使用注解的方式，不再使用hbm.xml配置文件 -->
+		<property name="packagesToScan" value="com.momolela.model"></property>
+        
         <!-- 指定hibernate自身的属性 -->
         <property name="hibernateProperties">
             <props>
@@ -66,11 +73,6 @@
             </props>
         </property>
         
-        <property name="namingStrategy">
-			<bean class="org.hibernate.cfg.ImprovedNamingStrategy" />
-		</property>
-		<!-- 获取实体目录 也就是使用注解的方式，不再使用hbm.xml配置文件 -->
-		<property name="packagesToScan" value="com.momolela.model"></property>
     </bean>
 
 	<!-- 设定transactionManager -->
